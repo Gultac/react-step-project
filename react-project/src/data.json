@@ -1,0 +1,28 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "Note",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dicta dolor dolore dolorum esse eum, ex facilis, impedit in incidunt itaque laudantium optio quia repellendus repudiandae! Ad aliquam aut deleniti molestiae nemo nobis officiis, possimus quibusdam quos similique. Accusantium aliquam aperiam atque beatae consectetur consequuntur corporis cupiditate dolores doloribus ea eaque eius error expedita facilis fugit harum, id iste labore minus nesciunt nihil nostrum placeat praesentium provident quae similique suscipit.",
+      "color": "#7bdcb5"
+    },
+    {
+      "id": 2,
+      "title": "Note",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dicta dolor dolore dolorum esse eum, ex facilis, impedit in incidunt itaque laudantium optio quia repellendus repudiandae! Ad aliquam aut deleniti molestiae nemo nobis officiis, possimus quibusdam quos similique. Accusantium aliquam aperiam atque beatae consectetur consequuntur corporis cupiditate dolores doloribus ea eaque eius error expedita facilis fugit harum, id iste labore minus nesciunt nihil nostrum placeat praesentium provident quae similique suscipit.",
+      "color": "#96c0db"
+    },
+    {
+      "id": 3,
+      "title": "Note",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dicta dolor dolore dolorum esse eum, ex facilis, impedit in incidunt itaque laudantium optio quia repellendus repudiandae! Ad aliquam aut deleniti molestiae nemo nobis officiis, possimus quibusdam quos similique. Accusantium aliquam aperiam atque beatae consectetur consequuntur corporis cupiditate dolores doloribus ea eaque eius error expedita facilis fugit harum, id iste labore minus nesciunt nihil nostrum placeat praesentium provident quae similique suscipit.",
+      "color": "#4eb78d"
+    },
+    {
+      "id": 4,
+      "title": "Note",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dicta dolor dolore dolorum esse eum, ex facilis, impedit in incidunt itaque laudantium optio quia repellendus repudiandae! Ad aliquam aut deleniti molestiae nemo nobis officiis, possimus quibusdam quos similique. Accusantium aliquam aperiam atque beatae consectetur consequuntur corporis cupiditate dolores doloribus ea eaque eius error expedita facilis fugit harum, id iste labore minus nesciunt nihil nostrum placeat praesentium provident quae similique suscipit.",
+      "color": "#85c286"
+    }
+  ]
+}
