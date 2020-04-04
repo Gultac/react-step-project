@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Note = ( {title, text, id, color} ) => {
     return (
-        <Link
-            to={`/notes/${id}`}>
+        <Link   to={`/notes/${id}`}>
             <NoteContainer color={color}>
                 <NoteHeader>
                     <Title>{title}</Title>
