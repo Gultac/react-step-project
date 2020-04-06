@@ -1,28 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-import images from '../styles/img';
-
-import {Icon} from "./Icon";
+// import images from "../styles/img";
 
 export const Header = () => {
-    return (
-        <Container>
-            <Logo>NotesApp</Logo>
-            <div>
-                <StyledNavLink exact to="/">Actual</StyledNavLink>
-                <StyledNavLink to="/archive">
-                    <Icon src={images.archive} alt='archive icon'/>
-                    Archive
-                </StyledNavLink>
-                <StyledNavLink to="/create">
-                    <Icon src={images.plus} alt='plus icon'/>
-                    Create
-                </StyledNavLink>
-            </div>
-        </Container>
-    )
+  return (
+    <Container>
+      <Logo>NotesApp</Logo>
+      <div>
+        <StyledNavLink exact to="/">
+          Actual
+        </StyledNavLink>
+        <StyledNavLink to="/archive">
+          
+          Archive
+        </StyledNavLink>
+        <StyledNavLink to="/create">
+          
+          Create
+        </StyledNavLink>
+      </div>
+    </Container>
+  );
 };
 
 const Container = styled.header`

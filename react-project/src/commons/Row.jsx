@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {createFetch} from './../API/fetchAPI';
 
 export const Row = ({ children, columns = 3, gutter = 15 }) => {
     return (
@@ -15,7 +14,7 @@ export const Row = ({ children, columns = 3, gutter = 15 }) => {
 const RowContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -${p => p.gutter}px;
+    margin: 0 -${p => p.gutter }px;
 `;
 
 const Column = styled.div`

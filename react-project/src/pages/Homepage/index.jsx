@@ -1,40 +1,51 @@
-import React, { useState, useEffect } from "react";
-import {Container, Row} from "../../commons";
-import { Note } from "./Note";
+import React, { useState, useEffect, useCotext } from "react";
+import styled from "styled-components";
 
-import { postsFetch } from '../../API/fetchAPI';
+// import { NoteContext } from "../../context/notes";
+import { postsFetch } from "../../API/fetchAPI";
+import { Container } from "../../commons";
+import { Note } from "../../components";
 
+export const Homepage = ({ history }) => {
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    (async () => {
+      const data = await postsFetch();
+      setData(data);
+      localStorage.clear();
+    })();
+  }, []);
 
-    export const Homepage = () => {
-
-        const [notes, setNotes] = useState([]);
-
-        useEffect(() => {
-            (async () => {
-                const data = await postsFetch();
-                setNotes(data);
-            })()
-        }, []);
-
-
-        return (
-            <Container>
-                <Row>
-                    {!!notes.length ?
-                        notes.map(({ title, text, id, color }) => (
-                            <Note
-                                key={id}
-                                title={ title }
-                                text={ text }
-                                color={ color }
-                            />
-                        ))
-                        :
-                        null
-                    }
-                </Row>
-            </Container>
-        )
-
+  return (
+    <Container>
+      <h1>Homepage</h1>
+      <Row>
+        {data.map(
+          (note) =>
+            !note.completed && (
+              <StyledDiv key={note.id}>
+                <Note
+                  onClick={() => {
+                    history.push(`/${note.id}`);
+                  }}
+                  note={note}
+                />
+              </StyledDiv>
+            )
+        )}
+      </Row>
+    </Container>
+  );
 };
+
+const Row = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+`;
+
+const StyledDiv = styled.div`
+  width: calc(100% / 3);
+  padding: 0 15px 30px;
+`;
