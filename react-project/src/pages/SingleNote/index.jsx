@@ -1,130 +1,98 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+import {  postsFetch } from "../../API/fetchAPI";
+import { Container } from "../../commons";
+import { NavLink } from "react-router-dom";
+
+export const SingleNote = ({ match }) => {
 
 
-export const SingleNote = () => {
+  const [data, setData] = useState([]);
+  const [fetchData, setFetchData] = useState([]);
 
-    const [notes, setNotes] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const data = await postsFetch();
+      setData(data[match.params.id - 1]);
+      setFetchData(data);
+    })();
+  }, []);
 
-    const [fields, setFields] = useState({
-        title: "",
-        text: ""
-    });
-    const onFieldChange = e => {
-        const { name, value } = e.target;
-        setFields(fields => ({
-            ...fields,
-            [name]: value
+  return (
+    <>
+      {data && (
+        <Container>
+          <Row>
+            <NoteContainer color={data.color}>
+              <NoteHeader>
+                <Title>{data.title}</Title>
+              </NoteHeader>
+              <Text>{data.text}</Text>
+            </NoteContainer>
+            <Div>
+              <StyledNavLink
+                to="/create"
+                onClick={() => {
+                  localStorage.setItem("item", JSON.stringify(data));
+                }}
+              >
+                Edit
+              </StyledNavLink>
+              <Button>Archive</Button>
+              <Button>Delete</Button>
+            </Div>
+          </Row>
 
-        }));
-    };
-    const onSubmit = e => {
-        e.preventDefault();
-        createNote(fields);
-
-    };
-
-    const getNotes = async () => {
-        try {
-            const res = await fetch("http://localhost:3001/notes");
-            const data = await res.json();
-
-            setNotes(data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const createNote = async ({ title, text }) => {
-        try {
-            const res = await fetch("http://localhost:3001/notes", {
-                method: 'POST',
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify({ title, text })
-            });
-            const answer = await res.json();
-            getNotes();
-            console.log(answer);
-
-        }
-        catch (error) {
-            console.log(error);
-        }
-    };
-
-    const editNote = async (id, { title, text }) => {
-        try {
-            const res = await fetch(`http://localhost:3001/notes/${id}`, {
-                method: 'PATCH',
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify({ title, text })
-            });
-            const answer = await res.json();
-            getNotes();
-            console.log(answer);
-
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-
-    const deleteNote = async id => {
-        try {
-            const res = await fetch(`http://localhost:3001/notes/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    "Content-type": "application/json"
-                }
-
-            });
-            const answer = await res.json();
-            getNotes();
-            console.log(answer);
-
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-
-    useEffect(() => {
-        getNotes();
-    }, []);
-
-
-    return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <input
-                    type='text'
-                    name='title'
-                    value={fields.title}
-                    onChange={onFieldChange}
-                />
-                <input
-                    type='text'
-                    name='text'
-                    value={fields.text}
-                    onChange={onFieldChange}
-                />
-                <button>send</button>
-            </form>
-            <ul>
-                {notes.map(({ id, title, text }) => (
-                    <li key={id}>
-                        <h4>{title}</h4>
-                        <p>{text}</p>
-                        <button onClick={() => editNote(id, fields)}>edit</button>
-                        <button onClick={() => deleteNote(id)}>delete</button>
-
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-
+        </Container>
+      )}
+    </>
+  );
 };
+
+const Button = styled.button`
+  border: none;
+  margin: 0 12px 12px 18px;
+  padding: 8px 30px;
+  text-align: center;
+  background-color: #009688;
+  color: white;
+  font-size: 16px;
+`;
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  text-align: center;
+  background-color: #009688;
+  color: white;
+  margin: 80px auto 18px;
+  padding: 8px 30px;
+  font-size: 16px;
+`;
+const Row = styled.div`
+  justify-content: center;
+`;
+const Div = styled.div`
+
+`;
+const NoteContainer = styled.div`
+  background-color: ${(p) => p.color};
+  margin: 50px auto;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  width: 300px;
+  min-height: 300px;
+`;
+const NoteHeader = styled.div`
+  padding: 5px 0;
+  border-bottom: 1px solid white;
+`;
+const Title = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const Text = styled.p`
+  text-align: center;
+`;
